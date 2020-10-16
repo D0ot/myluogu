@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 
-// Not solved by this file
 
 const int MAXN = 1E4 + 10;
 const int MAXM = 2E4 + 10;
