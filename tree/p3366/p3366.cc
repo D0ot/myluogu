@@ -31,16 +31,6 @@ void add_edge(int u, int v, int w) {
 
 int n,m;
 
-void init() {
-    scanf("%d%d", &n, &m);
-    int u,v,w;
-    for(int i = 1; i <= m; ++i) {
-        scanf("%d%d%d", &u, &v, &w);
-        add_edge(u, v, w);
-        add_edge(v, u, w);
-    }
-}
-
 struct Node {
     int p,d;
 
@@ -72,7 +62,9 @@ int prim(int s) {
         sum += d;
         int e = adj[p].e;
         while(e) {
-            pq.emplace(edge[e].i, edge[e].w);
+            if(!vis[edge[e].i]) {
+                pq.emplace(edge[e].i, edge[e].w);
+            }
             e = edge[e].n;
         }
     }
@@ -82,6 +74,17 @@ int prim(int s) {
         return sum;
     }
 }
+
+void init() {
+    scanf("%d%d", &n, &m);
+    int u,v,w;
+    for(int i = 1; i <= m; ++i) {
+        scanf("%d%d%d", &u, &v, &w);
+        add_edge(u, v, w);
+        add_edge(v, u, w);
+    }
+}
+
 int main() {
     init();
     int ret = prim(1);
